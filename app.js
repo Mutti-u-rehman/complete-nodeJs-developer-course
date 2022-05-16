@@ -1,15 +1,7 @@
 
-
-
-
-
-
-
-
-
 // console.log(process.argv); 
 const yargs = require('yargs');
-const { hideBin } = require('yargs/helpers');
+const { hideBin, applyExtends } = require('yargs/helpers');
 const notes = require('./notes.js');
 
 // yargs.version('0.0.1');
@@ -29,7 +21,7 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function (argv) {
+    handler: (argv) => {
         console.log('Title: '+ argv.title, 'Body: '+ argv.body);
         notes.addNote(argv.title, argv.body);
     }
@@ -50,24 +42,28 @@ yargs.command({
     }
 })
 
-// const argv = yargs(hideBin(process.argv)).argv;
-// console.log(argv.ships);
-
-// console.log(yargs.argv); 
-// const command = process.argv;
+yargs.command({
+    command: 'list',
+    describe: 'List all notes',
+    builder: {
+        title: {
+            describe: 'Note Title',
+            demandOption: false,
+            type: 'string'
+        }
+    },
+    handler: (argv) => {
+        notes.listNotes();
+    }
+})
 
 yargs.parse();
 
 
-// const getNotes = require('./notes.js');
-// const msg = getNotes();
-// console.log(msg);
-
-
-
 const chalk = require('chalk');
 const validator =  require('validator');
-const { string } = require('yargs');
+// const { string, argv } = require('yargs');
+// console.log(string, argv);
 // console.log(
 //     chalk.green.bold(msg), 
 //     validator.isEmail('mut@g.com'), 
@@ -75,3 +71,13 @@ const { string } = require('yargs');
 //     validator.isAfter('29/04/2023', 'new Date()')
 //     );
 
+
+
+
+//---------------------------------      How to use it     ---------------------------------
+/**
+ * nodemon app.js list
+ * node app.js list
+ * node app.js add --title="Testing" --body="main content here"
+ * node --inspect-brk app.js list (add debugger)
+ */
