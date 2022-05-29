@@ -1,0 +1,10 @@
+{
+    "apiConfig" : {
+        "apiKey": "a1a0aaf1047c524eae58abfc357e99e2",
+        "baseURL": "http://api.weatherstack.com/"
+    },
+    "mapboxConfig": {
+        "accessToken": "pk.eyJ1IjoibXV0dGktdS1yZWhtYW4iLCJhIjoiY2wzYTNoaG5qMDFwazNqcnF3M2Q1NDkyNyJ9.KmqoCJVxA94PJZXsQNba1g",
+        "baseURL": "https://api.mapbox.com/geocoding/v5/"
+    }
+}
